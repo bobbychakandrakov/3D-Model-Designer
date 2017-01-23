@@ -23,7 +23,7 @@ angular.module('starter.controllers', [])
         stats = new Stats();
         container.appendChild( stats.dom );
         //
-        window.addEventListener( 'resize', onWindowResize, false );
+        //window.addEventListener( 'resize', onWindowResize, false );
         // listen for messages from the gui
         window.addEventListener( 'start-animation', onStartAnimation );
         window.addEventListener( 'stop-animation', onStopAnimation );
@@ -43,6 +43,7 @@ angular.module('starter.controllers', [])
         renderer.setSize( window.innerWidth, window.innerHeight );
       }
       function onStartAnimation( event ) {
+
         var data = event.detail;
         blendMesh.stopAll();
         blendMesh.unPauseAll();
@@ -98,9 +99,10 @@ angular.module('starter.controllers', [])
         var radius = blendMesh.geometry.boundingSphere.radius;
         camera = new THREE.PerspectiveCamera( 45, aspect, 1, 10000 );
         camera.position.set( 0.0, radius, radius * 3.5 );
-        controls = new THREE.OrbitControls( camera );
-        controls.target.set( 0, radius, 0 );
-        controls.update();
+        // Controls move object perspective
+        // controls = new THREE.OrbitControls( camera );
+        // controls.target.set( 0, radius, 0 );
+        // controls.update();
         // Set default weights
         blendMesh.applyWeight( 'idle', 1 / 3 );
         blendMesh.applyWeight( 'walk', 1 / 3 );

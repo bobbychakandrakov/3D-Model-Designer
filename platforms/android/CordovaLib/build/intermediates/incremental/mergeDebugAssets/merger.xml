@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/Macbook/Desktop/3D Model Designer/3D-Model-Designer/platforms/android/CordovaLib/assets"/><source path="/Users/Macbook/Desktop/3D Model Designer/3D-Model-Designer/platforms/android/CordovaLib/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Users/Macbook/Desktop/3D Model Designer/3D-Model-Designer/platforms/android/CordovaLib/src/debug/assets"/></dataSet></merger>

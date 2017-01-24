@@ -1,6 +1,10 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope,THREE, Detector) {
+  $scope.rotateBody = rotateBody;
+  function rotateBody(rotate) {
+    blendMesh.rotation.y = rotate*Math.PI * -135 / 180;
+  }
   if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
       var container, stats;
       var blendMesh, helper, camera, scene, renderer, controls;
@@ -20,8 +24,8 @@ angular.module('starter.controllers', [])
         renderer.autoClear = true;
         container.appendChild( renderer.domElement );
         //
-        stats = new Stats();
-        container.appendChild( stats.dom );
+        //stats = new Stats();
+        //container.appendChild( stats.dom );
         //
         //window.addEventListener( 'resize', onWindowResize, false );
         // listen for messages from the gui
@@ -93,7 +97,7 @@ angular.module('starter.controllers', [])
         blendMesh.showModel( shouldShow );
       }
       function start() {
-        blendMesh.rotation.y = Math.PI * -135 / 180;
+        blendMesh.rotation.y = 4*Math.PI * -135 / 180;
         scene.add( blendMesh );
         var aspect = window.innerWidth / window.innerHeight;
         var radius = blendMesh.geometry.boundingSphere.radius;
@@ -104,9 +108,9 @@ angular.module('starter.controllers', [])
         // controls.target.set( 0, radius, 0 );
         // controls.update();
         // Set default weights
-        blendMesh.applyWeight( 'idle', 1 / 3 );
-        blendMesh.applyWeight( 'walk', 1 / 3 );
-        blendMesh.applyWeight( 'run', 1 / 3 );
+        // blendMesh.applyWeight( 'idle', 1 / 3 );
+        // blendMesh.applyWeight( 'walk', 1 / 3 );
+        // blendMesh.applyWeight( 'run', 1 / 3 );
         gui = new BlendCharacterGui(blendMesh);
         // Create the debug visualization
         helper = new THREE.SkeletonHelper( blendMesh );
@@ -117,7 +121,7 @@ angular.module('starter.controllers', [])
       }
       function animate() {
         requestAnimationFrame( animate, renderer.domElement );
-        stats.begin();
+        //stats.begin();
         // step forward in time based on whether we're stepping and scale
         var scale = gui.getTimeScale();
         var delta = clock.getDelta();
@@ -127,7 +131,7 @@ angular.module('starter.controllers', [])
         helper.update();
         gui.update( blendMesh.mixer.time );
         renderer.render( scene, camera );
-        stats.end();
+        //stats.end();
         // if we are stepping, consume time
         // ( will equal step size next time a single step is desired )
         timeToStep = 0;

@@ -1,10 +1,11 @@
 <ion-view view-title="Dashboard">
-  <ion-pain>
+  <ion-content>
     <div id="container"></div>
-    <div id="info">
-      <a href="http://threejs.org" target="_blank">three.js</a> - Skeletal Animation Blending
-      <br><br> Adjust blend weights to affect the animations that are currently playing.
-      <br> Cross fades (and warping) blend between 2 animations and end with a single animation.
-    </div>
-  </ion-pain>
+    <div class="button-bar">
+	  <a class="button" ng-click="rotateBody(2)">< Left</a>
+	  <a class="button" ng-click="rotateBody(4)">Center</a>
+	  <a class="button" ng-click="rotateBody(8)">Back</a>
+	  <a class="button" ng-click="rotateBody(6)">Right ></a>
+	</div>
+  </ion-content>
 </ion-view>

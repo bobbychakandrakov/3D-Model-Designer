@@ -1,6 +1,10 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope,THREE, Detector) {
+  $scope.rotateBody = rotateBody;
+  function rotateBody(rotate) {
+    blendMesh.rotation.y = rotate*Math.PI * -135 / 180;
+  }
   if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
       var container, stats;
       var blendMesh, helper, camera, scene, renderer, controls;
@@ -14,26 +18,26 @@ angular.module('starter.controllers', [])
         scene = new THREE.Scene();
         scene.add ( new THREE.AmbientLight( 0xffffff ) );
         renderer = new THREE.WebGLRenderer( { antialias: true, alpha: false } );
-        renderer.setClearColor( 0x777777 );
+        renderer.setClearColor( 0xFFFFFF );
         renderer.setPixelRatio( window.devicePixelRatio );
         renderer.setSize( window.innerWidth, window.innerHeight );
         renderer.autoClear = true;
         container.appendChild( renderer.domElement );
         //
-        stats = new Stats();
-        container.appendChild( stats.dom );
+        //stats = new Stats();
+        //container.appendChild( stats.dom );
         //
         //window.addEventListener( 'resize', onWindowResize, false );
         // listen for messages from the gui
-        window.addEventListener( 'start-animation', onStartAnimation );
-        window.addEventListener( 'stop-animation', onStopAnimation );
-        window.addEventListener( 'pause-animation', onPauseAnimation );
-        window.addEventListener( 'step-animation', onStepAnimation );
-        window.addEventListener( 'weight-animation', onWeightAnimation );
-        window.addEventListener( 'crossfade', onCrossfade );
-        window.addEventListener( 'warp', onWarp );
-        window.addEventListener( 'toggle-show-skeleton', onShowSkeleton );
-        window.addEventListener( 'toggle-show-model', onShowModel );
+        // window.addEventListener( 'start-animation', onStartAnimation );
+        // window.addEventListener( 'stop-animation', onStopAnimation );
+        // window.addEventListener( 'pause-animation', onPauseAnimation );
+        // window.addEventListener( 'step-animation', onStepAnimation );
+        // window.addEventListener( 'weight-animation', onWeightAnimation );
+        // window.addEventListener( 'crossfade', onCrossfade );
+        // window.addEventListener( 'warp', onWarp );
+        // window.addEventListener( 'toggle-show-skeleton', onShowSkeleton );
+        // window.addEventListener( 'toggle-show-model', onShowModel );
         blendMesh = new THREE.BlendCharacter();
         blendMesh.load( "models/skinned/marine/marine_anims_core.json", start );
       }
@@ -93,19 +97,20 @@ angular.module('starter.controllers', [])
         blendMesh.showModel( shouldShow );
       }
       function start() {
-        blendMesh.rotation.y = Math.PI * -135 / 180;
+        blendMesh.rotation.y = 4*Math.PI * -135 / 180;
         scene.add( blendMesh );
         var aspect = window.innerWidth / window.innerHeight;
         var radius = blendMesh.geometry.boundingSphere.radius;
         camera = new THREE.PerspectiveCamera( 45, aspect, 1, 10000 );
         camera.position.set( 0.0, radius, radius * 3.5 );
+        // Controls move object perspective
         // controls = new THREE.OrbitControls( camera );
         // controls.target.set( 0, radius, 0 );
         // controls.update();
         // Set default weights
-        blendMesh.applyWeight( 'idle', 1 / 3 );
-        blendMesh.applyWeight( 'walk', 1 / 3 );
-        blendMesh.applyWeight( 'run', 1 / 3 );
+        // blendMesh.applyWeight( 'idle', 1 / 3 );
+        // blendMesh.applyWeight( 'walk', 1 / 3 );
+        // blendMesh.applyWeight( 'run', 1 / 3 );
         gui = new BlendCharacterGui(blendMesh);
         // Create the debug visualization
         helper = new THREE.SkeletonHelper( blendMesh );
@@ -116,7 +121,7 @@ angular.module('starter.controllers', [])
       }
       function animate() {
         requestAnimationFrame( animate, renderer.domElement );
-        stats.begin();
+        //stats.begin();
         // step forward in time based on whether we're stepping and scale
         var scale = gui.getTimeScale();
         var delta = clock.getDelta();
@@ -126,7 +131,7 @@ angular.module('starter.controllers', [])
         helper.update();
         gui.update( blendMesh.mixer.time );
         renderer.render( scene, camera );
-        stats.end();
+        //stats.end();
         // if we are stepping, consume time
         // ( will equal step size next time a single step is desired )
         timeToStep = 0;

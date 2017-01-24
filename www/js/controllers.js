@@ -18,7 +18,7 @@ angular.module('starter.controllers', [])
         scene = new THREE.Scene();
         scene.add ( new THREE.AmbientLight( 0xffffff ) );
         renderer = new THREE.WebGLRenderer( { antialias: true, alpha: false } );
-        renderer.setClearColor( 0x777777 );
+        renderer.setClearColor( 0xFFFFFF );
         renderer.setPixelRatio( window.devicePixelRatio );
         renderer.setSize( window.innerWidth, window.innerHeight );
         renderer.autoClear = true;
@@ -29,15 +29,15 @@ angular.module('starter.controllers', [])
         //
         //window.addEventListener( 'resize', onWindowResize, false );
         // listen for messages from the gui
-        window.addEventListener( 'start-animation', onStartAnimation );
-        window.addEventListener( 'stop-animation', onStopAnimation );
-        window.addEventListener( 'pause-animation', onPauseAnimation );
-        window.addEventListener( 'step-animation', onStepAnimation );
-        window.addEventListener( 'weight-animation', onWeightAnimation );
-        window.addEventListener( 'crossfade', onCrossfade );
-        window.addEventListener( 'warp', onWarp );
-        window.addEventListener( 'toggle-show-skeleton', onShowSkeleton );
-        window.addEventListener( 'toggle-show-model', onShowModel );
+        // window.addEventListener( 'start-animation', onStartAnimation );
+        // window.addEventListener( 'stop-animation', onStopAnimation );
+        // window.addEventListener( 'pause-animation', onPauseAnimation );
+        // window.addEventListener( 'step-animation', onStepAnimation );
+        // window.addEventListener( 'weight-animation', onWeightAnimation );
+        // window.addEventListener( 'crossfade', onCrossfade );
+        // window.addEventListener( 'warp', onWarp );
+        // window.addEventListener( 'toggle-show-skeleton', onShowSkeleton );
+        // window.addEventListener( 'toggle-show-model', onShowModel );
         blendMesh = new THREE.BlendCharacter();
         blendMesh.load( "models/skinned/marine/marine_anims_core.json", start );
       }

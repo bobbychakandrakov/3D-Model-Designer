@@ -1,13 +1,4 @@
-/* Empty. Add your own CSS if you like */
-body {
-	color: #fff;
-	font-family:Monospace;
-	font-size:13px;
-	text-align:center;
-	background-color: #fff;
-	margin: 0px;
-	overflow: hidden;
-}
+
 #info {
 	position: absolute;
 	top: 0px; width: 100%;
@@ -15,4 +6,11 @@ body {
 }
 i {
 	font-size: 40px;
+}
+body {
+    font-family: Monospace;
+    background-color: #000;
+    color: #fff;
+    margin: 0px;
+    overflow: hidden;
 }

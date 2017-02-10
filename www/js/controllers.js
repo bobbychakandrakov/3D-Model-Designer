@@ -140,6 +140,11 @@ angular.module('starter.controllers', [])
 
 .controller('ChatsCtrl', function($scope, THREE, $timeout, $state) {
     $scope.doRefresh = doRefresh;
+    $scope.rotateBody = rotateBody;
+    var objectCopy;
+    function rotateBody(y){
+        objectCopy.rotation.y = y;
+    }
     function doRefresh(){
 			$window.location.reload(true);
         $scope.$broadcast('scroll.refreshComplete');
@@ -164,7 +169,7 @@ angular.module('starter.controllers', [])
 				//document.body.appendChild( container );
 
 				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-				camera.position.z = 80;
+				camera.position.z = 60;
 
 				// scene
 
@@ -221,8 +226,10 @@ angular.module('starter.controllers', [])
 						}
 
 					} );
-
-					object.position.y = 0;
+                    objectCopy = object;
+                    console.log(object.rotation)
+                    //object.rotation.y = -1.5;
+					object.position.y = -10;
 					scene.add( object );
 
 				}, onProgress, onError );
@@ -234,7 +241,7 @@ angular.module('starter.controllers', [])
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
 
-				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				//document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
 				//
 
